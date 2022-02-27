@@ -2,10 +2,11 @@
 
 ;; leader key
 (set vim.g.mapleader " ")
-(set vim.g.maplocalleader "/")
+(set vim.g.maplocalleader ",")
 
 ;; general settings
 (set vim.o.termguicolors true)
+(set vim.o.cursorline true)
 (set vim.o.number true)
 (set vim.o.autoindent true)
 (set vim.o.smarttab true)

@@ -27,18 +27,24 @@
        :q ["<C-w>q" "Quit current window"]
        :w ["<C-w>w" "Switch windows"]}
 
-   :e ["<cmd>NvimTreeToggle<cr>" "Toggle NvimTree"]
-   :<Esc> ["<cmd>silent! nohls<cr>" "Clear search highlight"]}
+   :p {:name "packs"
+       :i ["<cmd>PackerInstall<cr>" "Install plugins"]
+       :u ["<cmd>PackerUpdate<cr>"  "Update plugins"]
+       :c ["<cmd>PackerCompile<cr>"  "Compile packer file"]
+       :C ["<cmd>PackerClean<cr>"   "Clean plugins"]}
+
+   :e     ["<cmd>NvimTreeToggle<cr>" "Toggle NvimTree"]
+   :<Esc> ["<cmd>silent! nohls<cr>"  "Clear search highlight"]}
 
   {:prefix "<leader>"})
 
 (which-key.register
-  {:== ["<cmd>lua vim.lsp.buf.formatting()<cr>" "Code format"]
-   :/  ["\"+" "Using system clipboard register"]}
+  {:==             ["<cmd>lua vim.lsp.buf.formatting()<cr>" "Code format"]
+   :<localleader>  ["\"+" "Using system clipboard register"]}
 
   {:prefix "<localleader>"})
 
 (which-key.register
-  {:/  ["\"+" "Using system clipboard register"]}
+  {:<localleader>  ["\"+" "Using system clipboard register"]}
 
   {:prefix "<localleader>" :mode :v})

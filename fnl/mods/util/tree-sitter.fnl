@@ -5,4 +5,13 @@
     {:ensure_installed :maintained
      :ignore_install []
      :highlight {:enable true
-                 :disble []}}))
+                 :disble []}
+     :autotag {:enable true}
+     :textobjects {:select {:enable true
+                            :lookahead true
+                            :keymaps {:af "@function.outer"
+                                      :if "@function.inner"
+                                      :ac "@class.outer"
+                                      :ic "@class.inner"
+                                      :ab "@block.outer"
+                                      :ib "@block.inner"}}}}))

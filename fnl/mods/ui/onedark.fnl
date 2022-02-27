@@ -2,6 +2,6 @@
 
 (let [onedark (require :onedark)]
   (onedark.setup
-    {:style "cool"
+    {:style :cool
      :toggle_style_key "<nop>"})
   (onedark.load))
