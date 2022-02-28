@@ -25,9 +25,9 @@
        :silent true})
     (which-key.register
       {:c {:name "code"
-           :r [ "<cmd>lua vim.lsp.buf.rename()<cr>" "Rename"]
-           :a [ "<cmd>lua vim.lsp.buf.code_action()<cr>" "Code action"]
-           :f [ "<cmd>lua vim.lsp.buf.formatting()<cr>" "Format"]
+           :r [ "<cmd>lua vim.lsp.buf.rename()<cr>"         "Rename"]
+           :a [ "<cmd>lua vim.lsp.buf.code_action()<cr>"    "Code action"]
+           :f [ "<cmd>lua vim.lsp.buf.formatting()<cr>"     "Format"]
            :k [ "<cmd>lua vim.lsp.buf.signature_help()<cr>" "Signature help"]
            }}
       {:prefix "<leader>"
@@ -55,7 +55,8 @@
                :crystalline
                :clojure_lsp
                :racket_langserver
-               :erlangls]]
+               :erlangls
+               :solargraph]]
   (each [_ server (ipairs servers)]
     (use server {})))
 

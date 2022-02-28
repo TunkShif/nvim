@@ -27,10 +27,18 @@
        :q ["<C-w>q" "Quit current window"]
        :w ["<C-w>w" "Switch windows"]}
 
+   :b {:name "buffer"
+       :n ["<cmd>BufferLineMoveNext<cr>"   "Move to next"]
+       :p ["<cmd>BufferLineMovePrev<cr>"   "Move to previous"]
+       :b ["<cmd>BufferLinePick<cr>"       "Pick buffer to go"]
+       :x ["<cmd>BufferLinePickClose<cr>"  "Pick buffer to close"]
+       :h ["<cmd>BufferLineCloseLeft<cr>"  "Close left buffers"]
+       :l ["<cmd>BufferLineCloseRight<cr>" "Close right buffers"]}
+
    :p {:name "packs"
        :i ["<cmd>PackerInstall<cr>" "Install plugins"]
        :u ["<cmd>PackerUpdate<cr>"  "Update plugins"]
-       :c ["<cmd>PackerCompile<cr>"  "Compile packer file"]
+       :c ["<cmd>PackerCompile<cr>" "Compile packer file"]
        :C ["<cmd>PackerClean<cr>"   "Clean plugins"]}
 
    :e     ["<cmd>NvimTreeToggle<cr>" "Toggle NvimTree"]
@@ -48,3 +56,7 @@
   {:<localleader>  ["\"+" "Using system clipboard register"]}
 
   {:prefix "<localleader>" :mode :v})
+
+(which-key.register
+  {"[b" ["<cmd>BufferLineCyclePrev<cr>" "Previous buffer"]
+   "]b" ["<cmd>BufferLineCycleNext<cr>" "Next buffer"]})

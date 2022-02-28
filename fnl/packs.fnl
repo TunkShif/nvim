@@ -30,6 +30,7 @@
   :lukas-reineke/indent-blankline.nvim {:mod :ui.indent-line}
   :kyazdani42/nvim-tree.lua {:mod :ui.nvim-tree :requires [[:kyazdani42/nvim-web-devicons]]}
   :nvim-lualine/lualine.nvim {:mod :ui.lualine}
+  :akinsho/bufferline.nvim {:mod :ui.bufferline}
   :goolord/alpha-nvim {:mod :ui.alpha}
   :folke/which-key.nvim {:mod :ui.which-key}
   :norcalli/nvim-colorizer.lua {:mod :ui.colorizer}
