@@ -68,4 +68,5 @@
   :nvim-treesitter/nvim-treesitter {:mod :util.tree-sitter}
 
   ;; lang
-  :jose-elias-alvarez/nvim-lsp-ts-utils {})
+  :jose-elias-alvarez/nvim-lsp-ts-utils {}
+  :elixir-editors/vim-elixir {})

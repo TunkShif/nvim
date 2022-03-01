@@ -8,8 +8,6 @@
 (set vim.o.termguicolors true)
 (set vim.o.cursorline true)
 (set vim.o.number true)
-(set vim.o.autoindent true)
-(set vim.o.smarttab true)
 (set vim.o.shiftwidth 2)
 (set vim.o.hidden true)
 (set vim.o.wrap false)
@@ -17,8 +15,6 @@
 (set vim.o.encoding "utf-8")
 (set vim.o.wildmenu true)
 (set vim.o.smartcase true)
-(set vim.o.hlsearch true)
-(set vim.o.incsearch true)
 (set vim.o.relativenumber true)
 
 ;; switch off relative number in insert mode
