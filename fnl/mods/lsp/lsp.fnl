@@ -13,7 +13,7 @@
    [ "╰" :FloatBorder ]
    [ "│" :FloatBorder ]])
 
-(defn- make-on-attach [hook]
+(defn make-on-attach [hook]
   (fn [client buffer]
     (which-key.register
       {:gD  [ "<cmd>lua vim.lsp.buf.declaration()<cr>"        "Goto declaration"]
