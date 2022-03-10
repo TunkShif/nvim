@@ -16,20 +16,23 @@
 (defn- make-on-attach [hook]
   (fn [client buffer]
     (which-key.register
-      {:gD [ "<cmd>lua vim.lsp.buf.declaration()<cr>"    "Goto declaration"]
-       :gd [ "<cmd>lua vim.lsp.buf.definition()<cr>"     "Goto definition"]
-       :gi [ "<cmd>lua vim.lsp.buf.implementation()<cr>" "Goto implementation"]
-       :gr [ "<cmd>lua vim.lsp.buf.references()<cr>"     "Goto references"]
-       :K  [ "<cmd>lua vim.lsp.buf.hover()<cr>"          "Hover"]}
+      {:gD  [ "<cmd>lua vim.lsp.buf.declaration()<cr>"        "Goto declaration"]
+       :gd  [ "<cmd>lua vim.lsp.buf.definition()<cr>"         "Goto definition"]
+       :gi  [ "<cmd>lua vim.lsp.buf.implementation()<cr>"     "Goto implementation"]
+       :gr  [ "<cmd>lua vim.lsp.buf.references()<cr>"         "Goto references"]
+       :go  [ "<cmd>lua vim.diagnostic.open_float()<cr>"      "Show diagnostics"]
+       :K   [ "<cmd>lua vim.lsp.buf.hover()<cr>"              "Hover"]
+       "[d" [ "<cmd>lua vim.diagnostic.goto_prev()<cr>"       "Previous diagnostics"]
+       "]d" [ "<cmd>lua vim.diagnostic.goto_next()<cr>"       "Next diagnostics"]}
       {:buffer buffer
        :silent true})
     (which-key.register
       {:c {:name "code"
-           :r [ "<cmd>lua vim.lsp.buf.rename()<cr>"         "Rename"]
-           :a [ "<cmd>lua vim.lsp.buf.code_action()<cr>"    "Code action"]
-           :f [ "<cmd>lua vim.lsp.buf.formatting()<cr>"     "Format"]
-           :k [ "<cmd>lua vim.lsp.buf.signature_help()<cr>" "Signature help"]
-           }}
+           :r [ "<cmd>lua vim.lsp.buf.rename()<cr>"          "Rename"]
+           :a [ "<cmd>lua vim.lsp.buf.code_action()<cr>"     "Code action"]
+           :f [ "<cmd>lua vim.lsp.buf.formatting()<cr>"      "Format"]
+           :k [ "<cmd>lua vim.lsp.buf.signature_help()<cr>"  "Signature help"]
+           :d [ "<cmd>lua vim.diagnostic.setloclist()<cr>"  "Diagnostics"]}}
       {:prefix "<leader>"
        :buffer buffer
        :silent true})
@@ -56,11 +59,13 @@
                :clojure_lsp
                :racket_langserver
                :erlangls
-               :solargraph]]
+               :solargraph
+               :tailwindcss]]
   (each [_ server (ipairs servers)]
     (use server {})))
 
 (require :mods.lsp.null-ls)
 (require :mods.lsp.tsserver)
 (require :mods.lsp.elixir-ls)
+(require :mods.lsp.rust-analyzer)
 (require :mods.lsp.lua-language-server)

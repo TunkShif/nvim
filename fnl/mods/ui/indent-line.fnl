@@ -24,5 +24,6 @@
                         "TelescopePrompt"
                         "undotree"
                         "flutterToolsOutline"
+                        "FTerm"
                         ;; for all buffers without filetype
                         ""]}))
