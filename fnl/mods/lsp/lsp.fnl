@@ -32,7 +32,7 @@
            :a [ "<cmd>lua vim.lsp.buf.code_action()<cr>"     "Code action"]
            :f [ "<cmd>lua vim.lsp.buf.formatting()<cr>"      "Format"]
            :k [ "<cmd>lua vim.lsp.buf.signature_help()<cr>"  "Signature help"]
-           :d [ "<cmd>lua vim.diagnostic.setloclist()<cr>"  "Diagnostics"]}}
+           :d [ "<cmd>lua vim.diagnostic.setloclist()<cr>"   "Diagnostics"]}}
       {:prefix "<leader>"
        :buffer buffer
        :silent true})
