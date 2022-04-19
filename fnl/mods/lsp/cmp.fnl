@@ -14,14 +14,18 @@
 (cmp.setup
   {:snippet {:expand (fn [args]
                        ((. vim.fn :vsnip#anonymous) args.body))}
-   :mapping {:<CR> (cmp.mapping.confirm {:select true})
-             :<Tab> (cmp.mapping on-tab-down [:i :s :c])
-             ;; :<S-Tab> (cmp.mapping on-s-tab-down [:i :s])
-             }
+   :mapping (cmp.mapping.preset.insert
+              {:<CR> (cmp.mapping.confirm {:select true})
+               :<Tab> (cmp.mapping on-tab-down [:i :s :c])})
    :sources (cmp.config.sources
               [{:name :nvim_lsp}
                {:name :vsnip}
-               {:name :buffer}])})
+               {:name :buffer}
+               {:name :path}])})
+
+(cmp.setup.cmdline
+  ":" {:mapping (cmp.mapping.preset.cmdline)
+       :sources [{:name :cmdline}]})
 
 (let [cmp-autopairs (require :nvim-autopairs.completion.cmp)]
   (: cmp.event :on :confirm_done (cmp-autopairs.on_confirm_done {:map_char {:tex ""}})))

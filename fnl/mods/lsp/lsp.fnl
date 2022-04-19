@@ -52,6 +52,7 @@
 (let [servers [:bashls
                :clangd
                :html
+               :zls
                :emmet_ls
                :ocamllsp
                :pyright

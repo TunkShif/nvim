@@ -70,4 +70,5 @@
   ;; lang
   :jose-elias-alvarez/nvim-lsp-ts-utils {}
   :simrat39/rust-tools.nvim {}
-  :elixir-editors/vim-elixir {})
+  :elixir-editors/vim-elixir {}
+  :vim-crystal/vim-crystal {})

@@ -2,7 +2,7 @@
 
 (let [tree-sitter-config (require :nvim-treesitter.configs)]
   (tree-sitter-config.setup
-    {:ensure_installed :maintained
+    {:ensure_installed :all
      :ignore_install []
      :highlight {:enable true
                  :disble []}
