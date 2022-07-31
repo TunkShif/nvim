@@ -9,6 +9,9 @@
 (set vim.o.cursorline true)
 (set vim.o.number true)
 (set vim.o.shiftwidth 2)
+(set vim.o.tabstop 2)
+(set vim.o.softtabstop 2)
+(set vim.o.expandtab true)
 (set vim.o.hidden true)
 (set vim.o.wrap false)
 (set vim.o.mouse "a")
@@ -23,4 +26,4 @@
 
 ;; neovide settings
 (when vim.g.neovide
-  (set vim.o.guifont "FiraCode Nerd Font:h15"))
+  (set vim.o.guifont "FiraCode Nerd Font:h14"))

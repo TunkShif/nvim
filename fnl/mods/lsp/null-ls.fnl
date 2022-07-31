@@ -3,5 +3,5 @@
 
 (null-ls.setup
   {:sources [null-ls.builtins.formatting.stylua
-             ;; null-ls.builtins.formatting.fnlfmt
+             null_ls.builtins.formatting.autopep8
              (null-ls.builtins.formatting.prettier.with {:only_local "node_modules/.bin"})]})

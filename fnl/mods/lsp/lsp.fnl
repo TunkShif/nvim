@@ -53,20 +53,19 @@
                :clangd
                :html
                :zls
+               :hls
                :emmet_ls
                :ocamllsp
                :pyright
-               :crystalline
-               :clojure_lsp
-               :racket_langserver
-               :erlangls
-               :solargraph
-               :tailwindcss]]
+               :solargraph]]
   (each [_ server (ipairs servers)]
     (use server {})))
 
 (require :mods.lsp.null-ls)
 (require :mods.lsp.tsserver)
 (require :mods.lsp.elixir-ls)
+(require :mods.lsp.tailwindcss)
 (require :mods.lsp.rust-analyzer)
 (require :mods.lsp.lua-language-server)
+
+(require :mods.lsp.opal)

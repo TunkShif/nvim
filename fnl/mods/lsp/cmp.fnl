@@ -27,5 +27,16 @@
   ":" {:mapping (cmp.mapping.preset.cmdline)
        :sources [{:name :cmdline}]})
 
+(cmp.setup.cmdline
+  "/" {:mapping (cmp.mapping.preset.cmdline)
+       :sources [{:name :buffer}]
+       :view {:entries {:name :wildmenu
+                        :separator :|}}})
+
+(vim.cmd "imap <expr> <C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
+          smap <expr> <C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
+          imap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'
+          smap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'")
+
 (let [cmp-autopairs (require :nvim-autopairs.completion.cmp)]
   (: cmp.event :on :confirm_done (cmp-autopairs.on_confirm_done {:map_char {:tex ""}})))
