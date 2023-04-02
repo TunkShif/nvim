@@ -2,7 +2,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
-function bootstrap()
+local function bootstrap()
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
   if not vim.loop.fs_stat(lazypath) then
@@ -17,7 +17,12 @@ function bootstrap()
   end
 
   vim.opt.rtp:prepend(lazypath)
-  require("lazy").setup("plugins")
+  require("lazy").setup("plugins", {
+    ui = {
+      border = "single",
+      size = { width = 0.9, height = 0.8 },
+    },
+  })
 end
 
 bootstrap()

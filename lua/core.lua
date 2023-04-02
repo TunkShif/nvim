@@ -23,22 +23,22 @@ vim.o.foldenable = false
 -- switch off relative number in insert mode
 local BLACKLISTED_FILETYPES = { "neo-tree", "neo-tree-popup" }
 
-vim.api.nvim_create_autocmd('InsertEnter', {
-  callback = function()
-    local filetype = vim.bo.filetype
-    if list.contains(BLACKLISTED_FILETYPES, filetype) then
-      return
-    end
-    vim.o.relativenumber = false
-  end
+vim.api.nvim_create_autocmd("InsertEnter", {
+	callback = function()
+		local filetype = vim.bo.filetype
+		if list.contains(BLACKLISTED_FILETYPES, filetype) then
+			return
+		end
+		vim.o.relativenumber = false
+	end,
 })
 
-vim.api.nvim_create_autocmd('InsertLeave', {
-  callback = function()
-    local filetype = vim.bo.filetype
-    if list.contains(BLACKLISTED_FILETYPES, filetype) then
-      return
-    end
-    vim.o.relativenumber = true
-  end
+vim.api.nvim_create_autocmd("InsertLeave", {
+	callback = function()
+		local filetype = vim.bo.filetype
+		if list.contains(BLACKLISTED_FILETYPES, filetype) then
+			return
+		end
+		vim.o.relativenumber = true
+	end,
 })
