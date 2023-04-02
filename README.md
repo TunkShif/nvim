@@ -1,9 +1,10 @@
 # Neovim Config
 
-![neovim 0](https://s2.loli.net/2022/03/12/KSesm96BFrAa3lb.png)
-![neovim 1](https://s2.loli.net/2022/03/12/EBCUVH6pRLyqalD.png)
-
 A *simple*, *fast* and *modular* neovim configuration powered by [Fennel][0] for Elixir/React/Rust programmers.
+
+![20220731-12-52-08](https://user-images.githubusercontent.com/10807119/182010763-d23a2baa-c979-4c0b-bb0e-81b469512379.png)
+![20220731-12-52-54](https://user-images.githubusercontent.com/10807119/182010765-3b6b9f02-f028-4352-a868-2cfd34f94616.png)
+![20220731-12-55-40](https://user-images.githubusercontent.com/10807119/182010766-457fb0b8-e866-46e9-a18b-3af7d627f9a4.png)
 
 # Featured Plugins
 
