@@ -19,6 +19,7 @@
 (set vim.o.wildmenu true)
 (set vim.o.smartcase true)
 (set vim.o.relativenumber true)
+(set vim.o.foldenable false)
 
 ;; switch off relative number in insert mode
 (vim.cmd "autocmd InsertEnter * :set norelativenumber")

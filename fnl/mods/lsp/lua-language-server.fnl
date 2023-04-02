@@ -7,10 +7,9 @@
   (table.insert runtime_path "lua/?/init.lua")
   (table.insert runtime_path "lib/?.lua")
   (table.insert runtime_path "lib/?/init.lua")
-  ;; (table.insert libraries "/usr/share/awesome")
   (lsp.use :sumneko_lua
            {:opts {:settings {:Lua {:runtime {:version "LuaJIT"
                                               :path runtime_path}
-                                    :diagnostics {:globals ["vim" "awesome" "client" "root"]}
+                                    :diagnostics {:globals ["vim"]}
                                     :workspace {:library libraries}
                                     :telemetry {:enable false}}}}}))

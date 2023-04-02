@@ -33,9 +33,10 @@
   :akinsho/bufferline.nvim {:mod :ui.bufferline}
   :goolord/alpha-nvim {:mod :ui.alpha}
   :folke/which-key.nvim {:mod :ui.which-key}
-  :norcalli/nvim-colorizer.lua {:mod :ui.colorizer}
+  ;; :norcalli/nvim-colorizer.lua {:mod :ui.colorizer}
   :stevearc/dressing.nvim {:mod :ui.dressing}
   :SmiteshP/nvim-gps {:mod :ui.gps}
+  :lewis6991/gitsigns.nvim {:mod :ui.gitsigns}
   
   ;; util
   :nvim-telescope/telescope.nvim {:requires [[:nvim-lua/popup.nvim] [:nvim-lua/plenary.nvim]]}
@@ -53,6 +54,7 @@
   :neovim/nvim-lspconfig {:mod :lsp.lsp}
   :jose-elias-alvarez/null-ls.nvim {:mod :lsp.null-ls}
   :ray-x/lsp_signature.nvim {:mod :lsp.signature}
+  :mrshmllow/document-color.nvim {:mod :lsp.color}
 
   ;; completion
   :hrsh7th/nvim-cmp {:mod :lsp.cmp}
@@ -66,9 +68,11 @@
 
   ;;tree-sitter
   :nvim-treesitter/nvim-treesitter {:mod :util.tree-sitter}
+  :nkrkv/nvim-treesitter-rescript {}
 
   ;; lang
   :jose-elias-alvarez/nvim-lsp-ts-utils {}
+  :jose-elias-alvarez/typescript.nvim {}
   :simrat39/rust-tools.nvim {}
   :elixir-editors/vim-elixir {}
   :vim-crystal/vim-crystal {}

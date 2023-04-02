@@ -1,23 +1,10 @@
 (module mods.lsp.tailwindcss
-  {autoload {lsp mods.lsp.lsp}})
+  {autoload {lsp mods.lsp.lsp
+             document-color document-color}})
 
 (lsp.use :tailwindcss
-         {:opts {:init_options {:userLanguages {:elixir "html-eex"
-                                                :eelixir "html-eex"
-                                                :heex "html-eex"}}
-                 :filetypes [:elixir
-                             :eelixir
-                             :html
-                             :html-eex
-                             :heex
-                             :css
-                             :less
-                             :postcss
-                             :sass
-                             :scss
-                             :javascript
-                             :javascriptreact
-                             :typescript
-                             :typescriptreact
-                             :vue
-                             :rescript]}})
+         {:opts {:init_options {:userLanguages {:elixir "html"
+                                                :eelixir "html"
+                                                :heex "html"}}}
+          :hook (fn [client buffer]
+                  (document-color.buf_attach buffer))})

@@ -16,23 +16,23 @@
 (defn make-on-attach [hook]
   (fn [client buffer]
     (which-key.register
-      {:gD  [ "<cmd>lua vim.lsp.buf.declaration()<cr>"        "Goto declaration"]
-       :gd  [ "<cmd>lua vim.lsp.buf.definition()<cr>"         "Goto definition"]
-       :gi  [ "<cmd>lua vim.lsp.buf.implementation()<cr>"     "Goto implementation"]
-       :gr  [ "<cmd>lua vim.lsp.buf.references()<cr>"         "Goto references"]
-       :go  [ "<cmd>lua vim.diagnostic.open_float()<cr>"      "Show diagnostics"]
-       :K   [ "<cmd>lua vim.lsp.buf.hover()<cr>"              "Hover"]
-       "[d" [ "<cmd>lua vim.diagnostic.goto_prev()<cr>"       "Previous diagnostics"]
-       "]d" [ "<cmd>lua vim.diagnostic.goto_next()<cr>"       "Next diagnostics"]}
+      {:gD  [ "<cmd>lua vim.lsp.buf.declaration()<cr>"    "Goto declaration"]
+       :gd  [ "<cmd>lua vim.lsp.buf.definition()<cr>"     "Goto definition"]
+       :gi  [ "<cmd>lua vim.lsp.buf.implementation()<cr>" "Goto implementation"]
+       :gr  [ "<cmd>lua vim.lsp.buf.references()<cr>"     "Goto references"]
+       :go  [ "<cmd>lua vim.diagnostic.open_float()<cr>"  "Show diagnostics"]
+       :K   [ "<cmd>lua vim.lsp.buf.hover()<cr>"          "Hover"]
+       "[d" [ "<cmd>lua vim.diagnostic.goto_prev()<cr>"   "Previous diagnostics"]
+       "]d" [ "<cmd>lua vim.diagnostic.goto_next()<cr>"   "Next diagnostics"]}
       {:buffer buffer
        :silent true})
     (which-key.register
       {:c {:name "code"
-           :r [ "<cmd>lua vim.lsp.buf.rename()<cr>"          "Rename"]
-           :a [ "<cmd>lua vim.lsp.buf.code_action()<cr>"     "Code action"]
-           :f [ "<cmd>lua vim.lsp.buf.formatting()<cr>"      "Format"]
-           :k [ "<cmd>lua vim.lsp.buf.signature_help()<cr>"  "Signature help"]
-           :d [ "<cmd>lua vim.diagnostic.setloclist()<cr>"   "Diagnostics"]}}
+           :r [ "<cmd>lua vim.lsp.buf.rename()<cr>"               "Rename"]
+           :a [ "<cmd>lua vim.lsp.buf.code_action()<cr>"          "Code action"]
+           :f [ "<cmd>lua vim.lsp.buf.format({async = true})<cr>" "Format"]
+           :k [ "<cmd>lua vim.lsp.buf.signature_help()<cr>"       "Signature help"]
+           :d [ "<cmd>lua vim.diagnostic.setloclist()<cr>"        "Diagnostics"]}}
       {:prefix "<leader>"
        :buffer buffer
        :silent true})
@@ -45,16 +45,17 @@
         opts (or (. config :opts) {})
         hook (. config :hook)]
     (tset opts :on_attach (make-on-attach hook))
-    (tset opts :capabilities (cmp-lsp.update_capabilities (vim.lsp.protocol.make_client_capabilities)))
+    (tset opts :capabilities (cmp-lsp.default_capabilities))
     (server.setup opts))
   nil)
 
 (let [servers [:bashls
                :clangd
-               :html
+               :cssls
                :zls
                :hls
-               :emmet_ls
+               :astro
+               :jdtls
                :ocamllsp
                :pyright
                :solargraph]]
@@ -63,7 +64,9 @@
 
 (require :mods.lsp.null-ls)
 (require :mods.lsp.tsserver)
+(require :mods.lsp.html)
 (require :mods.lsp.elixir-ls)
+(require :mods.lsp.rescript-ls)
 (require :mods.lsp.tailwindcss)
 (require :mods.lsp.rust-analyzer)
 (require :mods.lsp.lua-language-server)
