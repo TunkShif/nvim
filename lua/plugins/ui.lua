@@ -41,4 +41,13 @@ return {
       },
     },
   },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    command = "ToggleTerm",
+    keys = {
+      { "<C-`>", "<cmd>ToggleTerm<cr>", mode = { "n", "i", "t" }, desc = "Toggle terminal" },
+    },
+    opts = {},
+  },
 }
