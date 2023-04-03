@@ -11,18 +11,19 @@ return {
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
-      {
-        "ahmedkhalf/project.nvim",
-        config = function()
-          require("project_nvim").setup()
-          require("telescope").load_extension("projects")
-        end,
-      },
     },
     opts = {
       defaults = {
         borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
       },
     },
+  },
+  {
+    "ahmedkhalf/project.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("project_nvim").setup()
+      require("telescope").load_extension("projects")
+    end,
   },
 }
