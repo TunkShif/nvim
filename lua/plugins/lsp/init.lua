@@ -10,17 +10,8 @@ return {
       local lspconfig = require("lspconfig")
       local servers = opts.servers
 
-      local handlers = {
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" }),
-      }
-
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       for server, server_opts in pairs(servers) do
-        lspconfig[server].setup(vim.tbl_deep_extend("force", {
-          handlers = vim.deepcopy(handlers),
-          capabilities = vim.deepcopy(capabilities),
-        }, server_opts))
+        lspconfig[server].setup(require("utils.lsp").make_opts(server_opts))
       end
 
       vim.diagnostic.config({ float = { border = "single" } })

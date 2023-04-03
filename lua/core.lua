@@ -15,6 +15,7 @@ vim.o.encoding = "utf-8"
 vim.o.wildmenu = true
 vim.o.smartcase = true
 vim.o.relativenumber = true
+vim.o.signcolumn = "yes"
 vim.o.foldenable = false
 
 -- vim.cmd [[autocmd InsertEnter * :set norelativenumber]]
