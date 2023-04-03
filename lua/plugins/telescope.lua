@@ -4,10 +4,10 @@ return {
     tag = "0.1.1",
     keys = {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
-      { "<leader>fh", "<cmd>Telescope oldfiles<cr>", desc = "Find history" },
-      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find by grep" },
-      { "<leader>fp", "<cmd>Telescope projects<cr>", desc = "Find projects" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>",    desc = "Find buffers" },
+      { "<leader>fh", "<cmd>Telescope oldfiles<cr>",   desc = "Find history" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Find by grep" },
+      { "<leader>fp", "<cmd>Telescope projects<cr>",   desc = "Find projects" },
     },
     dependencies = {
       "nvim-lua/plenary.nvim",

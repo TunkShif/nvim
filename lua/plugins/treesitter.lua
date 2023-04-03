@@ -2,6 +2,10 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    dependencies = {
+      "windwp/nvim-ts-autotag",
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     event = { "BufReadPost", "BufNewFile" },
     opts = {
       ensure_installed = {
@@ -53,6 +57,21 @@ return {
       auto_install = true,
       highlight = { enable = true },
       indent = { enable = true },
+      auto_tag = { enable = true },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          include_surrounding_whitespace = true,
+          keymaps = {
+            -- You can use the capture groups defined in textobjects.scm
+            ["af"] = { query = "@function.outer", desc = "function outer" },
+            ["if"] = { query = "@function.inner", desc = "function inner" },
+            ["ab"] = { query = "@block.outer", desc = "block outer" },
+            ["ib"] = { query = "@block.inner", desc = "block inner" },
+          },
+        },
+      },
       -- incremental_selection = {
       --   enable = true,
       --   keymaps = {

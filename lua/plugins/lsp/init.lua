@@ -74,4 +74,5 @@ return {
     end,
   },
   { import = "plugins.lsp.lang.typescript" },
+  { import = "plugins.lsp.lang.rust" },
 }
