@@ -1,5 +1,25 @@
 return {
   {
+    "navarasu/onedark.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("onedark").setup({ style = "cool" })
+      vim.cmd([[colorscheme onedark]])
+      vim.api.nvim_set_hl(0, "NormalFloat", { fg = "#a5b0c5", bg = "#242b38" })
+      vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#abb2bf", bg = "#242b38" })
+    end,
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 500
+      require("which-key").setup({})
+    end,
+  },
+  {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
@@ -78,7 +98,7 @@ return {
             text = " NeoTree",
             text_align = "left",
             highlight = "Directory",
-            seperator = true
+            seperator = true,
           },
         },
       },
