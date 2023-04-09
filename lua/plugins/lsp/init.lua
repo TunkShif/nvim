@@ -68,7 +68,18 @@ return {
         sources = {
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.prettier,
-          null_ls.builtins.diagnostics.eslint,
+          null_ls.builtins.diagnostics.eslint.with({
+            condition = function(utils)
+              -- only enabled when eslint config detected
+              return utils.root_has_file({
+                ".eslintrc.js",
+                ".eslintrc.cjs",
+                ".eslintrc.yaml",
+                ".eslintrc.yml",
+                ".eslintrc.json",
+              })
+            end,
+          }),
         },
       })
     end,

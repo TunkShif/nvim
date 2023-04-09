@@ -2,6 +2,7 @@ local wk = require("which-key")
 
 wk.register({
   f = { name = "find" },
+  b = { name = "buffer" },
   w = {
     name = "window",
     h = { "<C-w>h", "Go to left window" },
@@ -22,6 +23,10 @@ wk.register({
 }, {
   prefix = "<leader>",
 })
+
+wk.register({
+  l = { name = "lsp" },
+}, { prefix = "<localleader>" })
 
 wk.register({
   ["<localleader>"] = { '"+', "Using system clipboard register" },

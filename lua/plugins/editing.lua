@@ -1,7 +1,7 @@
 return {
   {
     "ggandor/leap.nvim",
-    event = "InsertEnter",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("leap").add_default_mappings()
     end,
@@ -23,7 +23,12 @@ return {
   {
     "kylechui/nvim-surround",
     version = "*",
-    event = "VeryLazy",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {},
+  },
+  {
+    "numToStr/Comment.nvim",
+    event = { "BufReadPost", "BufNewFile" },
     opts = {},
   },
 }

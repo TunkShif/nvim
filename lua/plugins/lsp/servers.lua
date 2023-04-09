@@ -22,11 +22,19 @@ return {
   },
   html = {},
   cssls = {},
+  -- denols = {},
   tailwindcss = {
+    init_options = {
+      userLanguages = {
+        elixir = "html-eex",
+        eelixir = "html-eex",
+        heex = "html-eex",
+      },
+    },
     settings = {
       experimental = {
         classRegex = {
-          { "cva\\(([^)]*)\\)",    "[\"'`]([^\"'`]*).*?[\"'`]" },
+          { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
           { "styled\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
           "tw\\.\\w+`([^`]*)",
           "\\/\\* tw \\*\\/\\s+`([^`]*)",
