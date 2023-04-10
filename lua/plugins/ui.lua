@@ -67,9 +67,16 @@ return {
     version = "*",
     command = "ToggleTerm",
     keys = {
-      { "<C-`>", "<cmd>ToggleTerm<cr>", mode = { "n", "i", "t" }, desc = "Toggle terminal" },
+      { "<C-`>", "<cmd>ToggleTerm direction=horizontal<cr>", mode = { "n", "i", "t" }, desc = "Toggle terminal" },
+      { "<A-t>", "<cmd>ToggleTerm direction=float<cr>", mode = { "n", "i", "t" }, desc = "Toggle float terminal" },
     },
-    opts = {},
+    opts = {
+      float_opts = {
+        border = "single",
+        width = math.floor(vim.o.columns * 0.9),
+        height = math.floor(vim.o.lines * 0.85),
+      },
+    },
   },
   {
     "rebelot/heirline.nvim",
