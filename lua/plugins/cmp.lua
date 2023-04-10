@@ -44,6 +44,11 @@ return {
             if icons[item.kind] then
               item.kind = icons[item.kind] .. item.kind
             end
+
+            -- rust-analyzer displays function signature and type definition in this property,
+            -- which causes the autocompletion window too wide
+            item.menu = nil
+
             return item
           end,
         },

@@ -25,10 +25,6 @@ wk.register({
 })
 
 wk.register({
-  l = { name = "lsp" },
-}, { prefix = "<localleader>" })
-
-wk.register({
   ["<localleader>"] = { '"+', "Using system clipboard register" },
 }, { prefix = "<localleader>" })
 
