@@ -25,7 +25,7 @@ return {
   },
   html = {},
   cssls = {},
-  -- denols = {},
+  jsonls = {},
   tailwindcss = {
     init_options = {
       userLanguages = {

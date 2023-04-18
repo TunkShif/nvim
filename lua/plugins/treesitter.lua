@@ -57,7 +57,7 @@ return {
       auto_install = true,
       highlight = { enable = true },
       indent = { enable = true },
-      auto_tag = { enable = true },
+      autotag = { enable = true },
       textobjects = {
         select = {
           enable = true,
