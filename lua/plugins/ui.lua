@@ -66,11 +66,27 @@ return {
     "akinsho/toggleterm.nvim",
     version = "*",
     command = "ToggleTerm",
+    event = "VeryLazy",
     keys = {
-      { "<C-`>", "<cmd>ToggleTerm direction=horizontal<cr>", mode = { "n", "i", "t" }, desc = "Toggle terminal" },
-      { "<A-t>", "<cmd>ToggleTerm direction=float<cr>", mode = { "n", "i", "t" }, desc = "Toggle float terminal" },
+      {
+        "<A-t>",
+        function()
+          require("utils.terminal").toggle_floating()
+        end,
+        mode = { "n", "i", "t" },
+        desc = "Toggle float terminal",
+      },
+      {
+        "<leader>wg",
+        function()
+          require("utils.terminal").toggle_lazygit()
+        end,
+        mode = { "n", "i", "t" },
+        desc = "Toggle lazygit",
+      },
     },
     opts = {
+      open_mapping = "<C-`>",
       float_opts = {
         border = "single",
         width = math.floor(vim.o.columns * 0.9),
