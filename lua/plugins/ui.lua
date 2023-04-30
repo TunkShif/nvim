@@ -81,7 +81,6 @@ return {
         function()
           require("utils.terminal").toggle_lazygit()
         end,
-        mode = { "n", "i", "t" },
         desc = "Toggle lazygit",
       },
     },

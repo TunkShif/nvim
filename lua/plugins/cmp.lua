@@ -1,3 +1,46 @@
+local highlights = {
+  PmenuSel = { bg = "#282C34", fg = "NONE" },
+  Pmenu = { fg = "#C5CDD9", bg = "#242B38" },
+
+  CmpItemAbbrDeprecated = { fg = "#7E8294", bg = "NONE", strikethrough = true },
+  CmpItemAbbrMatch = { fg = "#82AAFF", bg = "NONE", bold = true },
+  CmpItemAbbrMatchFuzzy = { fg = "#82AAFF", bg = "NONE", bold = true },
+  CmpItemMenu = { fg = "#C792EA", bg = "NONE", italic = true },
+
+  CmpItemKindField = { fg = "#EED8DA", bg = "#B5585F" },
+  CmpItemKindProperty = { fg = "#EED8DA", bg = "#B5585F" },
+  CmpItemKindEvent = { fg = "#EED8DA", bg = "#B5585F" },
+
+  CmpItemKindText = { fg = "#C3E88D", bg = "#9FBD73" },
+  CmpItemKindEnum = { fg = "#C3E88D", bg = "#9FBD73" },
+  CmpItemKindKeyword = { fg = "#C3E88D", bg = "#9FBD73" },
+
+  CmpItemKindConstant = { fg = "#FFE082", bg = "#D4BB6C" },
+  CmpItemKindConstructor = { fg = "#FFE082", bg = "#D4BB6C" },
+  CmpItemKindReference = { fg = "#FFE082", bg = "#D4BB6C" },
+
+  CmpItemKindFunction = { fg = "#EADFF0", bg = "#A377BF" },
+  CmpItemKindStruct = { fg = "#EADFF0", bg = "#A377BF" },
+  CmpItemKindClass = { fg = "#EADFF0", bg = "#A377BF" },
+  CmpItemKindModule = { fg = "#EADFF0", bg = "#A377BF" },
+  CmpItemKindOperator = { fg = "#EADFF0", bg = "#A377BF" },
+
+  CmpItemKindVariable = { fg = "#C5CDD9", bg = "#7E8294" },
+  CmpItemKindFile = { fg = "#C5CDD9", bg = "#7E8294" },
+
+  CmpItemKindUnit = { fg = "#F5EBD9", bg = "#D4A959" },
+  CmpItemKindSnippet = { fg = "#F5EBD9", bg = "#D4A959" },
+  CmpItemKindFolder = { fg = "#F5EBD9", bg = "#D4A959" },
+
+  CmpItemKindMethod = { fg = "#DDE5F5", bg = "#6C8ED4" },
+  CmpItemKindValue = { fg = "#DDE5F5", bg = "#6C8ED4" },
+  CmpItemKindEnumMember = { fg = "#DDE5F5", bg = "#6C8ED4" },
+
+  CmpItemKindInterface = { fg = "#D8EEEB", bg = "#58B5A8" },
+  CmpItemKindColor = { fg = "#D8EEEB", bg = "#58B5A8" },
+  CmpItemKindTypeParameter = { fg = "#D8EEEB", bg = "#58B5A8" },
+}
+
 return {
   {
     "hrsh7th/nvim-cmp",
@@ -8,13 +51,39 @@ return {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "saadparwaiz1/cmp_luasnip",
+      "onsails/lspkind.nvim",
     },
     opts = function()
       local cmp = require("cmp")
+      for name, hl in pairs(highlights) do
+        vim.api.nvim_set_hl(0, name, hl)
+      end
+
       return {
         window = {
-          completion = cmp.config.window.bordered({ border = "single" }),
+          completion = {
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            col_offset = -3,
+            side_padding = 0,
+            border = "single",
+          },
           documentation = cmp.config.window.bordered({ border = "single" }),
+        },
+        formatting = {
+          fields = { "kind", "abbr", "menu" },
+          format = function(entry, item)
+            local kind = require("lspkind").cmp_format({
+              preset = "codicons",
+              mode = "symbol_text",
+              maxwidth = 20,
+            })(entry, item)
+
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            kind.kind = " " .. (strings[1] or "") .. " "
+            kind.menu = " (" .. (strings[2] or "") .. ")"
+
+            return kind
+          end,
         },
         completion = {
           completeopt = "menu,menuone,noinsert",
@@ -37,21 +106,21 @@ return {
           { name = "buffer" },
           { name = "path" },
         }),
-        formatting = {
-          format = function(_, item)
-            local icons = require("utils.icons").kind
-
-            if icons[item.kind] then
-              item.kind = icons[item.kind] .. item.kind
-            end
-
-            -- rust-analyzer displays function signature and type definition in this property,
-            -- which causes the autocompletion window too wide
-            item.menu = nil
-
-            return item
-          end,
-        },
+        -- formatting = {
+        --   format = function(_, item)
+        --     local icons = require("utils.icons").kind
+        --
+        --     if icons[item.kind] then
+        --       item.kind = icons[item.kind] .. item.kind
+        --     end
+        --
+        --     -- rust-analyzer displays function signature and type definition in this property,
+        --     -- which causes the autocompletion window too wide
+        --     item.menu = nil
+        --
+        --     return item
+        --   end,
+        -- },
       }
     end,
   },
