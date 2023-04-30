@@ -59,31 +59,7 @@ return {
       })
     end,
   },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      local null_ls = require("null-ls")
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.prettier,
-          null_ls.builtins.diagnostics.eslint.with({
-            condition = function(utils)
-              -- only enabled when eslint config detected
-              return utils.root_has_file({
-                ".eslintrc.js",
-                ".eslintrc.cjs",
-                ".eslintrc.yaml",
-                ".eslintrc.yml",
-                ".eslintrc.json",
-              })
-            end,
-          }),
-        },
-      })
-    end,
-  },
+  { import = "plugins.lsp.server.null_ls" },
   { import = "plugins.lsp.lang.typescript" },
   { import = "plugins.lsp.lang.rust" },
 }
