@@ -93,10 +93,27 @@ return {
       },
     },
   },
+  -- {
+  --   "rebelot/heirline.nvim",
+  --   event = "UiEnter",
+  --   opts = {},
+  -- },
   {
-    "rebelot/heirline.nvim",
+    "nvim-lualine/lualine.nvim",
     event = "UiEnter",
-    opts = {},
+    opts = {
+      options = {
+        theme = "onedark",
+        component_separators = "|",
+        section_separators = { left = "", right = "" },
+        disabled_filetypes = { "neo-tree" },
+      },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_c = { "filename" },
+      },
+    },
   },
   {
     "akinsho/bufferline.nvim",
