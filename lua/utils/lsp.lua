@@ -15,10 +15,7 @@ function M.make_opts(opts)
   local on_attach = options.on_attach
 
   options.on_attach = function(client, bufnr)
-    -- disable semantic highlight provided by lsp server
-    -- cuz it doesn't work well with tree-sitter
     client.server_capabilities.semanticTokensProvider = nil
-
     if on_attach ~= nil then
       on_attach(client, bufnr)
     end

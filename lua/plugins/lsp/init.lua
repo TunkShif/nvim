@@ -1,7 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "hrsh7th/cmp-nvim-lsp" },
+    dependencies = { "hrsh7th/cmp-nvim-lsp", "lvimuser/lsp-inlayhints.nvim" },
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       servers = require("plugins.lsp.servers"),
@@ -49,12 +49,19 @@ return {
             prefix = "<leader>",
             buffer = buffer,
           })
+        end,
+      })
 
-          -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-          -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-          -- vim.keymap.set('n', '<space>wl', function()
-          --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-          -- end, opts)
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("LspAttachInlayHints", {}),
+        callback = function(args)
+          if not (args.data and args.data.client_id) then
+            return
+          end
+
+          local bufnr = args.buf
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          require("lsp-inlayhints").on_attach(client, bufnr)
         end,
       })
     end,
