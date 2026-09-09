@@ -32,6 +32,10 @@
       "rev": "427e9222363d07c32d6db6169e4049c28d58d141",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
+    "nvim-treesitter-textobjects": {
+      "rev": "5c7b0263797dfd1bd6202f2b219f3b53a80b2187",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
+    },
     "refer.nvim": {
       "rev": "7ab4781bc1343cfacc72cc46f6600b4d934d2485",
       "src": "https://github.com/juniorsundar/refer.nvim"

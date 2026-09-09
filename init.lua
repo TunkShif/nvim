@@ -5,6 +5,17 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
+vim.o.incsearch = true
+
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99 -- keep all folds open by default when opening a file
+vim.opt.foldlevelstart = 99
+
+vim.o.laststatus = 2 -- always show status line
+vim.o.statusline = "%m %f %=%l:%c %y"
+vim.o.winborder = "single"
+
 local number_toggle_group = vim.api.nvim_create_augroup("NumberToggle", { clear = true })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
@@ -38,6 +49,8 @@ vim.pack.add({
 
     "https://github.com/neovim/nvim-lspconfig",
     "https://github.com/nvim-treesitter/nvim-treesitter",
+    "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+
     "https://github.com/saghen/blink.lib",
     "https://github.com/Saghen/blink.cmp",
     "https://github.com/stevearc/conform.nvim",

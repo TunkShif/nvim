@@ -7,6 +7,26 @@ require("blink.cmp").setup({
     },
 })
 
+vim.api.nvim_create_autocmd("User", {
+    pattern = "TSUpdate",
+    callback = function()
+        require("nvim-treesitter.parsers").crystal = {
+            install_info = {
+                url = "https://github.com/crystal-lang-tools/tree-sitter-crystal",
+                generate = false,
+                generate_from_json = false,
+                queries = "queries/nvim",
+            },
+        }
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function(args)
+        pcall(vim.treesitter.start, args.buf)
+    end,
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -95,6 +115,23 @@ vim.lsp.config("vtsls", {
                 parameterTypes = { enabled = true },
                 propertyDeclarationTypes = { enabled = true },
                 variableTypes = { enabled = false },
+            },
+        },
+    },
+})
+
+vim.lsp.config("gopls", {
+    settings = {
+        gopls = {
+            semanticTokens = true,
+            hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                ignoredError = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
             },
         },
     },

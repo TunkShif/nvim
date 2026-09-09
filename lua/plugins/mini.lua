@@ -1,14 +1,23 @@
 require("mini.basics").setup()
-require("mini.ai").setup()
 require("mini.icons").setup()
-require("mini.pairs").setup()
 require("mini.surround").setup()
 require("mini.cursorword").setup()
 
+require("mini.pairs").setup()
+
 require("mini.files").setup({
     windows = {
-        max_number = 4,
+        max_number = 3,
         preview = true,
+    },
+})
+
+local treesitter_spec = require("mini.ai").gen_spec.treesitter
+require("nvim-treesitter-textobjects").setup()
+require("mini.ai").setup({
+    custom_textobjects = {
+        f = treesitter_spec({ a = "@function.outer", i = "@function.inner" }, {}),
+        c = treesitter_spec({ a = "@class.outer", i = "@class.inner" }, {}),
     },
 })
 
