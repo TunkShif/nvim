@@ -137,8 +137,13 @@ vim.lsp.config("gopls", {
     },
 })
 
+vim.lsp.enable("ameba-ls")
+vim.lsp.enable("liger")
+
 vim.lsp.enable("lua_ls")
+
 vim.lsp.enable("gopls")
-vim.lsp.enable("vtsls")
+
 vim.lsp.enable("svelte")
 vim.lsp.enable("tailwindcss")
+vim.lsp.enable("vtsls")

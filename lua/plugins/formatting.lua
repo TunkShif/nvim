@@ -1,5 +1,6 @@
 require("conform").setup({
     formatters_by_ft = {
+        crystal = { "crystal" },
         lua = { "stylua" },
     },
     format_on_save = function()
