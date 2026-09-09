@@ -142,13 +142,3 @@ vim.lsp.enable("gopls")
 vim.lsp.enable("vtsls")
 vim.lsp.enable("svelte")
 vim.lsp.enable("tailwindcss")
-
-require("conform").setup({
-    formatters_by_ft = {
-        lua = { "stylua" },
-    },
-    format_on_save = {
-        lsp_format = "fallback",
-        timeout_ms = 500,
-    },
-})
