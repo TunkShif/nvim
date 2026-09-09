@@ -23,8 +23,10 @@ local function diagnostics_picker(opts)
         local severity = d.severity or vim.diagnostic.severity.HINT
         local label = SEVERITIES[severity] or "UNKOWN"
 
+        local code = d.code or ""
+        local source = d.source or ""
         table.insert(items, {
-            text = string.format("%s [%s:%d:%d] %s", label, relpath, d.lnum + 1, d.col + 1, d.message),
+            text = string.format("%s [%s:%d:%d] [%s] %s [%s]", label, relpath, d.lnum + 1, d.col + 1, code, d.message, source),
             data = { bufnr = d.bufnr, filename = bufname, lnum = d.lnum + 1, col = d.col },
         })
     end
