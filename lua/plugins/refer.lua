@@ -25,8 +25,9 @@ local function diagnostics_picker(opts)
 
         local code = d.code or ""
         local source = d.source or ""
+        local message = d.message:gsub("[\r\n]+", " ")
         table.insert(items, {
-            text = string.format("%s [%s:%d:%d] [%s] %s [%s]", label, relpath, d.lnum + 1, d.col + 1, code, d.message, source),
+            text = string.format("%s [%s:%d:%d] [%s] %s [%s]", label, relpath, d.lnum + 1, d.col + 1, code, message, source),
             data = { bufnr = d.bufnr, filename = bufname, lnum = d.lnum + 1, col = d.col },
         })
     end
