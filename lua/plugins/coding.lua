@@ -137,13 +137,35 @@ vim.lsp.config("gopls", {
     },
 })
 
+-- astro language server requires typescript sdk <= 6 to work
+vim.lsp.config("astro", {
+    before_init = function(_, config)
+        local tsdk = os.getenv("HOME") .. "/.local/lib/astro/node_modules/typescript/lib"
+        if vim.fn.isdirectory(tsdk) ~= 1 then
+            vim.notify("astro language server requires typescript@~6 to be installed in $HOME/.local/lib/astro", vim.log.levels.ERROR)
+            return
+        end
+        config.init_options = config.init_options or {}
+        config.init_options.typescript = config.init_options.typescript or {}
+        config.init_options.typescript.tsdk = tsdk
+    end,
+})
+
+-- crystal
 vim.lsp.enable("ameba-ls")
 vim.lsp.enable("liger")
 
-vim.lsp.enable("lua_ls")
+-- elixir
+vim.lsp.enable("expert")
 
+-- go
 vim.lsp.enable("gopls")
 
+-- lua
+vim.lsp.enable("lua_ls")
+
+-- web
+vim.lsp.enable("astro")
 vim.lsp.enable("svelte")
 vim.lsp.enable("tailwindcss")
 vim.lsp.enable("vtsls")
