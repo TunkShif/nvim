@@ -1,9 +1,49 @@
 local refer = require("refer")
 
+local function is_vendor_path(path)
+    path = path:gsub("\\", "/")
+
+    return path:match("^vendor/") ~= nil
+        or path:find("/vendor/", 1, true) ~= nil
+end
+
+local function vendor_last(items, query)
+    local ranked = require("refer.fuzzy").sorters.lua(items, query)
+    local regular = {}
+    local vendor = {}
+
+    for _, item in ipairs(ranked) do
+        if is_vendor_path(item) then
+            table.insert(vendor, item)
+        else
+            table.insert(regular, item)
+        end
+    end
+
+    vim.list_extend(regular, vendor)
+    return regular
+end
+
+local function is_go_project()
+    local cwd = vim.uv.cwd()
+    if not cwd then
+        return false
+    end
+
+    return #vim.fs.find({ "go.work", "go.mod" }, {
+        path = cwd,
+        upward = true,
+        type = "file",
+    }) > 0
+end
+
 refer.setup({
     min_height = 10,
     extras = {
         find_file = true,
+    },
+    custom_sorters = {
+        vendor_last = vendor_last,
     },
 })
 refer.setup_ui_select()
@@ -61,7 +101,11 @@ end)
 
 vim.keymap.set("n", "<leader>fx", "<cmd>Refer Diagnostics Buffer<cr>", { desc = "View Buffer Diagnostics" })
 vim.keymap.set("n", "<leader>fX", "<cmd>Refer Diagnostics Workspace<cr>", { desc = "View Workspace Diagnostics" })
-vim.keymap.set("n", "<leader>ff", "<cmd>Refer Files<cr>", { desc = "Find Files" })
+vim.keymap.set("n", "<leader>ff", function()
+    require("refer.providers.files").files({
+        default_sorter = is_go_project() and "vendor_last" or nil,
+    })
+end, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>fF", "<cmd>Refer Extras FindFile<cr>", { desc = "View Files" })
 vim.keymap.set("n", "<leader>fg", "<cmd>Refer Grep<cr>", { desc = "Grep File" })
 vim.keymap.set("n", "<leader>fb", "<cmd>Refer Buffers<cr>", { desc = "View Buffers" })
