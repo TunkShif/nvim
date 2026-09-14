@@ -3,6 +3,7 @@ require("conform").setup({
         astro = { "prettier" },
         crystal = { "crystal" },
         lua = { "stylua" },
+        svelte = { "prettier" },
     },
     format_on_save = function()
         if vim.g.disable_autoformat then

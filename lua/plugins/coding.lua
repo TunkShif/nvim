@@ -166,6 +166,7 @@ vim.lsp.enable("lua_ls")
 
 -- web
 vim.lsp.enable("astro")
+vim.lsp.enable("eslint")
 vim.lsp.enable("svelte")
 vim.lsp.enable("tailwindcss")
 vim.lsp.enable("vtsls")
