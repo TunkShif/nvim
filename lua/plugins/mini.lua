@@ -37,9 +37,12 @@ local function update_minifiles_windows()
     local height = 15
     local row = vim.o.lines - height - 2
 
-    local total_width = vim.o.columns
-    local base_width = math.floor(total_width / n)
-    local remainder = total_width % n
+    -- Window width excludes its border. Reserve two columns for every
+    -- bordered window so the complete layout still fits inside the editor.
+    local border_width = 2
+    local content_width = vim.o.columns - border_width * n
+    local base_width = math.floor(content_width / n)
+    local remainder = content_width % n
 
     local col = 0
 
@@ -60,7 +63,16 @@ local function update_minifiles_windows()
 
         vim.api.nvim_win_set_config(win.win_id, config)
 
-        col = col + width
+        -- mini.files initially sizes unfocused windows using `width_nofocus`.
+        -- That narrow width can horizontally scroll their content. Resizing
+        -- the window does not reset this view state, so restore the left edge.
+        vim.api.nvim_win_call(win.win_id, function()
+            local view = vim.fn.winsaveview()
+            view.leftcol = 0
+            vim.fn.winrestview(view)
+        end)
+
+        col = col + width + border_width
     end
 end
 
@@ -72,3 +84,13 @@ vim.api.nvim_create_autocmd("User", {
 require("which-key").setup({ preset = "helix" })
 
 vim.keymap.set("n", "<leader>e", MiniFiles.open, { desc = "Navigate Files" })
+vim.keymap.set("n", "<leader>E", function()
+    local path = vim.api.nvim_buf_get_name(0)
+
+    if path == "" or vim.fn.filereadable(path) == 0 then
+        vim.notify("Current buffer is not a file", vim.log.levels.INFO)
+        return
+    end
+
+    MiniFiles.open(path)
+end, { desc = "Navigate Current File" })
