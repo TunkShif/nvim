@@ -5,6 +5,14 @@ require("mini.cursorword").setup()
 
 require("mini.pairs").setup()
 
+require("mini.git").setup()
+require("mini.diff").setup({
+    view = {
+        style = "sign",
+        signs = { add = "+", change = "~", delete = "-" },
+    },
+})
+
 require("mini.files").setup({
     windows = {
         max_number = 3,
