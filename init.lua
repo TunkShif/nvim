@@ -5,6 +5,10 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.smartindent = false
+
 vim.o.incsearch = true
 
 vim.wo.foldmethod = "expr"
@@ -54,6 +58,7 @@ vim.pack.add({
     "https://github.com/saghen/blink.lib",
     "https://github.com/Saghen/blink.cmp",
     "https://github.com/stevearc/conform.nvim",
+    "https://github.com/rafamadriz/friendly-snippets",
 })
 
 vim.cmd.colorscheme("catppuccin-macchiato")
