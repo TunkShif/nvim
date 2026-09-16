@@ -1,9 +1,26 @@
 require("mini.basics").setup()
 require("mini.icons").setup()
+require("mini.comment").setup()
 require("mini.surround").setup()
 require("mini.cursorword").setup()
 
 require("mini.pairs").setup()
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "lisp", "scheme", "clojure" },
+    callback = function(args)
+        -- Override mini.pairs' global mappings with normal buffer-local input.
+        vim.keymap.set("i", "(", "(", { buffer = args.buf })
+        vim.keymap.set("i", ")", ")", { buffer = args.buf })
+    end,
+})
+
+require("mini.files").setup({
+    windows = {
+        max_number = 3,
+        preview = true,
+    },
+})
 
 require("mini.git").setup()
 require("mini.diff").setup({
@@ -13,10 +30,29 @@ require("mini.diff").setup({
     },
 })
 
-require("mini.files").setup({
-    windows = {
-        max_number = 3,
-        preview = true,
+local statusline = require("mini.statusline")
+statusline.setup({
+    use_icons = true,
+    content = {
+        active = function()
+            local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
+            local git = statusline.section_git({ trunc_width = 40 })
+            local diff = statusline.section_diff({ trunc_width = 75 })
+            local diagnostics = statusline.section_diagnostics({ trunc_width = 75 })
+            local filename = statusline.section_filename({ trunc_width = 140 })
+            local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })
+            local search = statusline.section_searchcount({ trunc_width = 75 })
+
+            return statusline.combine_groups({
+                { hl = mode_hl, strings = { mode } },
+                { hl = "MiniStatuslineDevinfo", strings = { git, diff, diagnostics } },
+                "%<",
+                { hl = "MiniStatuslineFilename", strings = { filename } },
+                "%=",
+                { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
+                { hl = mode_hl, strings = { search, "%l:%c" } },
+            })
+        end,
     },
 })
 
