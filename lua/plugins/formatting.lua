@@ -4,6 +4,10 @@ require("conform").setup({
         crystal = { "crystal" },
         lua = { "stylua" },
         svelte = { "prettier" },
+        javascript = { "biome" },
+        typescript = { "biome" },
+        javascriptreact = { "biome" },
+        typescriptreact = { "biome" },
     },
     format_on_save = function()
         if vim.g.disable_autoformat then

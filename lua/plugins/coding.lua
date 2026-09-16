@@ -101,14 +101,19 @@ vim.lsp.config("vtsls", {
                 },
             },
         },
+        ["js/ts"] = {
+            preferences = {
+                importModuleSpecifier = "non-relative",
+            },
+        },
         javascript = {
             preferences = {
-                importModulesSpecifier = "non-relative",
+                importModuleSpecifier = "non-relative",
             },
         },
         typescript = {
             preferences = {
-                importModulesSpecifier = "non-relative",
+                importModuleSpecifier = "non-relative",
             },
             updateImportsOnFileMove = { enabled = "always" },
             suggest = {
@@ -117,7 +122,7 @@ vim.lsp.config("vtsls", {
             inlayHints = {
                 enumMemberValues = { enabled = true },
                 functionLikeReturnTypes = { enabled = true },
-                parameterNames = { enabled = "literals" },
+                parameterNames = { enabled = false },
                 parameterTypes = { enabled = true },
                 propertyDeclarationTypes = { enabled = true },
                 variableTypes = { enabled = false },
