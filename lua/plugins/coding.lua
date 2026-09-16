@@ -5,6 +5,12 @@ require("blink.cmp").setup({
     keymap = {
         preset = "super-tab",
     },
+    signature = {
+        enabled = true,
+        window = {
+            show_documentation = true,
+        },
+    },
 })
 
 vim.api.nvim_create_autocmd("User", {
