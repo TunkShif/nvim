@@ -5,7 +5,6 @@ require("mini.surround").setup()
 require("mini.cursorword").setup()
 
 require("mini.pairs").setup()
-
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "lisp", "scheme", "clojure" },
     callback = function(args)
@@ -125,8 +124,6 @@ vim.api.nvim_create_autocmd("User", {
     callback = update_minifiles_windows,
 })
 
-require("which-key").setup({ preset = "helix" })
-
 vim.keymap.set("n", "<leader>e", MiniFiles.open, { desc = "Navigate Files" })
 vim.keymap.set("n", "<leader>E", function()
     local path = vim.api.nvim_buf_get_name(0)
@@ -138,3 +135,59 @@ vim.keymap.set("n", "<leader>E", function()
 
     MiniFiles.open(path)
 end, { desc = "Navigate Current File" })
+
+require("flash").setup()
+
+vim.keymap.set({ "n", "x", "o" }, "gl", function()
+    require("flash").jump()
+end, { desc = "Flash Jump" })
+vim.keymap.set({ "n", "x", "o" }, "gL", function()
+    require("flash").treesitter()
+end, { desc = "Flash Treesitter" })
+
+require("snacks").setup({
+    terminal = {
+        win = {
+            position = "float",
+            width = 0.9,
+            height = 0.9,
+            border = "rounded",
+        },
+    },
+    lazygit = {
+        win = {
+            position = "float",
+            width = 0.9,
+            height = 0.9,
+            border = "rounded",
+        },
+    },
+})
+
+vim.api.nvim_create_user_command("LazyGit", function()
+    Snacks.lazygit()
+end, { desc = "Open LazyGit" })
+
+vim.api.nvim_create_user_command("Leaf", function(args)
+    local command = { "leaf" }
+    local cwd
+
+    if args.bang then
+        local path = vim.api.nvim_buf_get_name(0)
+
+        if path == "" or vim.fn.filereadable(path) == 0 then
+            vim.notify("Current buffer is not a saved file", vim.log.levels.ERROR)
+            return
+        end
+
+        table.insert(command, path)
+        cwd = vim.fs.dirname(path)
+    end
+
+    Snacks.terminal.open(command, { cwd = cwd })
+end, {
+    bang = true,
+    desc = "Open Leaf; ! opens the current saved file",
+})
+
+require("which-key").setup({ preset = "helix" })

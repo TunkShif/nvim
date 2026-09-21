@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+vim.g.maplocalleader = "\\"
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -47,6 +47,8 @@ vim.pack.add({
     { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
 
     "https://github.com/nvim-mini/mini.nvim",
+    "https://github.com/folke/flash.nvim",
+    "https://github.com/folke/snacks.nvim",
     "https://github.com/juniorsundar/refer.nvim",
     "https://github.com/folke/which-key.nvim",
 
@@ -64,7 +66,7 @@ vim.pack.add({
 
 vim.cmd.colorscheme("catppuccin-macchiato")
 
-require("plugins.mini")
+require("plugins.editor")
 require("plugins.refer")
 require("plugins.coding")
 require("plugins.formatting")
