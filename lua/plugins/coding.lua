@@ -24,6 +24,16 @@ vim.api.nvim_create_autocmd("User", {
                 queries = "queries/nvim",
             },
         }
+
+        require("nvim-treesitter.parsers").scheme = {
+            install_info = {
+                url = "https://github.com/TunkShif/tree-sitter-scheme",
+                revision = "b51542b32d32110d8ee6a30ce248dd200d6a7731",
+                generate = false,
+                generate_from_json = false,
+                -- queries = "queries/nvim",
+            },
+        }
     end,
 })
 
