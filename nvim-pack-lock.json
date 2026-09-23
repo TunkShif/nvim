@@ -16,6 +16,10 @@
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "conjure": {
+      "rev": "349256ada7f73801f6e832abec1ac8eac32bf788",
+      "src": "https://github.com/Olical/conjure"
+    },
     "flash.nvim": {
       "rev": "5f0f270fdc7c5b0c21d903ee85b9cb06f2ac636a",
       "src": "https://github.com/folke/flash.nvim"

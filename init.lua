@@ -70,3 +70,5 @@ require("plugins.editor")
 require("plugins.refer")
 require("plugins.coding")
 require("plugins.formatting")
+
+require("plugins.lispy")

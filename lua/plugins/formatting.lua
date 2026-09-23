@@ -1,8 +1,24 @@
 require("conform").setup({
+    formatters = {
+        schemat = {
+            command = "schemat",
+            stdin = true,
+        },
+    },
     formatters_by_ft = {
-        astro = { "prettier" },
         crystal = { "crystal" },
+
         lua = { "stylua" },
+
+        scheme = { "schemat" },
+        racket = { "schemat" },
+        lisp = { "schemat" },
+        commonlisp = { "schemat" },
+        clojure = { "schemat" },
+        fennel = { "schemat" },
+        janet = { "schemat" },
+
+        astro = { "prettier" },
         svelte = { "prettier" },
         javascript = { "biome" },
         typescript = { "biome" },

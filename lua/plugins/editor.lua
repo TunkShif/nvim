@@ -1,18 +1,9 @@
 require("mini.basics").setup()
 require("mini.icons").setup()
+require("mini.pairs").setup()
 require("mini.comment").setup()
 require("mini.surround").setup()
 require("mini.cursorword").setup()
-
-require("mini.pairs").setup()
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "lisp", "scheme", "clojure" },
-    callback = function(args)
-        -- Override mini.pairs' global mappings with normal buffer-local input.
-        vim.keymap.set("i", "(", "(", { buffer = args.buf })
-        vim.keymap.set("i", ")", ")", { buffer = args.buf })
-    end,
-})
 
 require("mini.files").setup({
     windows = {
