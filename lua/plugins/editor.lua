@@ -20,6 +20,18 @@ require("mini.diff").setup({
     },
 })
 
+local indentscope = require("mini.indentscope")
+indentscope.setup({
+    draw = {
+        delay = 50,
+        animation = indentscope.gen_animation.linear({
+            duration = 50,
+            unit = "total",
+        }),
+    },
+    symbol = "│",
+})
+
 local statusline = require("mini.statusline")
 statusline.setup({
     use_icons = true,
