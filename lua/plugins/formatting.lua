@@ -1,7 +1,7 @@
 require("conform").setup({
     formatters = {
-        schemat = {
-            command = "schemat",
+        schemefmt = {
+            command = "schemefmt",
             stdin = true,
         },
     },
@@ -10,13 +10,7 @@ require("conform").setup({
 
         lua = { "stylua" },
 
-        scheme = { "schemat" },
-        racket = { "schemat" },
-        lisp = { "schemat" },
-        commonlisp = { "schemat" },
-        clojure = { "schemat" },
-        fennel = { "schemat" },
-        janet = { "schemat" },
+        scheme = { "schemefmt" },
 
         astro = { "prettier" },
         svelte = { "prettier" },
