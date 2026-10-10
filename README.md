@@ -62,6 +62,9 @@ Leader key: `SPC` | Local leader: `\`
 | `<leader>e`  | File explorer (mini.files) |
 | `gl`         | Flash jump                |
 | `gL`         | Select a Tree-sitter node |
+| `<C-]>`      | Go to definition (built-in LSP `tagfunc`) |
+| `<C-w>]`     | Go to definition in a split |
+| `<C-t>`      | Jump back (pop tag stack) |
 | `grd`        | Go to definition       |
 | `grD`        | Go to declaration      |
 | `gri`        | Go to implementation   |
