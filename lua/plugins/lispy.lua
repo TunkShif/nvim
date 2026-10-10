@@ -1,8 +1,6 @@
 local filetypes = { "lisp", "scheme", "clojure", "fennel", "janet", "racket" }
 
-vim.g["conjure#client#scheme#stdio#command"] = "gsi"
-vim.g["conjure#client#scheme#stdio#prompt_pattern"] = "> "
-vim.g["conjure#client#scheme#stdio#value_prefix_pattern"] = false
+require("plugins.guile")
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = filetypes,
