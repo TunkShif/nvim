@@ -73,6 +73,23 @@ Leader key: `SPC` | Local leader: `\`
 | `[d`         | Previous diagnostic    |
 | `]d`         | Next diagnostic        |
 
+## Git (mini.git + mini.diff)
+
+| Mapping      | Description                                                        |
+| :----------- | :----------------------------------------------------------------- |
+| `<leader>gb` | Blame current line in a popup (works with unsaved edits)           |
+| `<leader>gl` | Show history of current line / visual range (`git log -L`); on a commit hash shows the commit, on a diff line shows the file at that commit |
+| `<leader>gd` | Diff current file against index (`:Git diff -- %`)                 |
+| `<leader>go` | Toggle mini.diff inline overlay                                    |
+
+Inside the blame popup (press `<leader>gb` again to focus it):
+
+| Key    | Description                                    |
+| :----- | :--------------------------------------------- |
+| `<CR>` | Show the commit (`git show --stat --patch`)    |
+| `<BS>` | Show the parent of the blamed commit           |
+| `q`    | Close the popup                                |
+
 ## Mini.nvim Modules
 
 | Module           | Description                    |
@@ -84,6 +101,8 @@ Leader key: `SPC` | Local leader: `\`
 | mini.pairs       | Auto-close brackets            |
 | mini.files       | File explorer                  |
 | mini.ai          | Text objects (function, class) |
+| mini.git         | Git integration (`:Git` command, history) |
+| mini.diff        | Diff hunks in sign column and overlay |
 
 ## Other
 
@@ -104,6 +123,7 @@ lua/plugins/
   refer.lua              -- fuzzy picker and diagnostics
   coding.lua             -- LSP, treesitter, completion
   formatting.lua         -- conform.nvim setup
+  git.lua                -- git blame popup and git keymaps
 lsp/
   ameba-ls.lua           -- Crystal linter config
   liger.lua              -- custom LSP config
