@@ -1,5 +1,56 @@
 require("mason").setup()
 
+-- Mason packages to install automatically (names as shown in :Mason).
+local mason_ensure_installed = {
+    -- c/c++
+    "clangd",
+    -- go
+    "gopls",
+    "gofumpt",
+    "goimports",
+    -- lua
+    "lua-language-server",
+    "stylua",
+    -- rust
+    "rust-analyzer",
+    -- zig
+    "zls",
+    -- web
+    "vtsls",
+    "eslint-lsp",
+    "eslint_d",
+    "biome",
+    "oxfmt",
+    "oxlint",
+    "prettierd",
+    "svelte-language-server",
+    "tailwindcss-language-server",
+    "html-lsp",
+    "json-lsp",
+    "yaml-language-server",
+}
+
+local mason_registry = require("mason-registry")
+mason_registry.refresh(function()
+    for _, name in ipairs(mason_ensure_installed) do
+        local ok, pkg = pcall(mason_registry.get_package, name)
+        if not ok then
+            vim.notify("mason: unknown package " .. name, vim.log.levels.WARN)
+        elseif not pkg:is_installed() and not pkg:is_installing() then
+            vim.notify("mason: installing " .. name)
+            pkg:install({}, function(success, err)
+                vim.schedule(function()
+                    if success then
+                        vim.notify("mason: installed " .. name)
+                    else
+                        vim.notify("mason: failed " .. name .. ": " .. tostring(err), vim.log.levels.ERROR)
+                    end
+                end)
+            end)
+        end
+    end
+end)
+
 require("blink.cmp").build():pwait()
 require("blink.cmp").setup({
     keymap = {
@@ -189,5 +240,6 @@ vim.lsp.enable("lua_ls")
 vim.lsp.enable("astro")
 vim.lsp.enable("eslint")
 vim.lsp.enable("svelte")
+vim.lsp.enable("oxlint")
 vim.lsp.enable("tailwindcss")
 vim.lsp.enable("vtsls")

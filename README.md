@@ -111,8 +111,9 @@ Inside the blame popup (press `<leader>gb` again to focus it):
 
 | Mapping       | Description            |
 | :------------ | :--------------------- |
-| `:Format enable`  | Enable autoformat   |
-| `:Format disable` | Disable autoformat  |
+| `:Format`         | Format buffer (or visual range) |
+| `:Autoformat [enable\|disable\|toggle]` | Control format-on-save (default: toggle) |
+| `<leader>uf`      | Toggle format-on-save |
 | `:LazyGit`        | Open LazyGit in a floating terminal |
 | `:Leaf`           | Open Leaf in a floating terminal |
 | `:Leaf!`          | Open the current saved file in Leaf |
