@@ -130,6 +130,10 @@ lua/plugins/
   coding.lua             -- LSP, treesitter, completion
   formatting.lua         -- conform.nvim setup
   git.lua                -- git blame popup and git keymaps
+lua/crystal/
+  indent.lua             -- Crystal indentexpr (Lua port of vim-crystal)
+indent/
+  crystal.lua            -- enables the Crystal indentexpr
 lsp/
   ameba-ls.lua           -- Crystal linter config
   liger.lua              -- custom LSP config
