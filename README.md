@@ -55,6 +55,8 @@ Leader key: `SPC` | Local leader: `\`
 | `<leader>fx` | Buffer diagnostics        |
 | `<leader>fX` | Workspace diagnostics     |
 
+`<leader>ff` matches the query against the project-relative path, not just the file name: `Foo` finds `components/Foo/index.tsx`, and `comp/Foo` matches path segments in order. Uppercase in the query makes it case-sensitive.
+
 ## Navigation
 
 | Mapping      | Description            |
