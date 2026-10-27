@@ -37,6 +37,43 @@ local function is_go_project()
     }) > 0
 end
 
+local function escape_regex(s)
+    return (s:gsub("([%.%+%*%?%[%]%(%)%{%}%|%^%$\\])", "\\%1"))
+end
+
+-- Match the query against the project-relative path (not just the file name),
+-- so `Foo` finds `components/Foo/index.tsx`. Segments split by `/` are
+-- contiguous substrings of path components, in order.
+local function files_find_command(query)
+    local cmd = { "fd", "-H", "--type", "f", "--color", "never" }
+    for _, dir in ipairs({ ".git", ".jj", "node_modules", ".cache" }) do
+        vim.list_extend(cmd, { "--exclude", dir })
+    end
+
+    -- fd prefilters on the first token; refer's Lua sorter then handles all tokens
+    local token = query:match("%S+")
+    if not token then
+        return nil
+    end
+
+    local segments = {}
+    for _, seg in ipairs(vim.split(token, "/", { trimempty = true })) do
+        table.insert(segments, escape_regex(seg))
+    end
+    if #segments == 0 then
+        return nil
+    end
+
+    -- --full-path sees the absolute path: anchor to cwd so the cwd itself never matches
+    local cwd = escape_regex(vim.uv.cwd())
+    local pattern = "^" .. cwd .. "/(.*/)?[^/]*" .. table.concat(segments, "[^/]*/(.*/)?[^/]*")
+
+    -- smart case based on the typed token only (the cwd may contain uppercase)
+    local case_flag = token:find("%u") and "--case-sensitive" or "--ignore-case"
+    vim.list_extend(cmd, { "--full-path", case_flag, "--", pattern })
+    return cmd
+end
+
 refer.setup({
     min_height = 10,
     extras = {
@@ -44,6 +81,11 @@ refer.setup({
     },
     custom_sorters = {
         vendor_last = vendor_last,
+    },
+    providers = {
+        files = {
+            find_command = files_find_command,
+        },
     },
 })
 refer.setup_ui_select()
