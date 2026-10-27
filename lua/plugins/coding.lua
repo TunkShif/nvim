@@ -225,7 +225,7 @@ vim.lsp.config("astro", {
 
 -- crystal
 vim.lsp.enable("ameba-ls")
-vim.lsp.enable("liger")
+vim.lsp.enable("clear-ls")
 
 -- elixir
 vim.lsp.enable("expert")
