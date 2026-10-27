@@ -124,6 +124,7 @@ Inside the blame popup (press `<leader>gb` again to focus it):
 
 ```
 init.lua                 -- leader, options, plugin specs
+filetype.lua             -- Helm chart detection (templates -> helm, values -> yaml.helm-values)
 lua/plugins/
   editor.lua             -- editor UI, navigation, and terminal tools
   refer.lua              -- fuzzy picker and diagnostics
@@ -134,7 +135,9 @@ lua/crystal/
   indent.lua             -- Crystal indentexpr (Lua port of vim-crystal)
 indent/
   crystal.lua            -- enables the Crystal indentexpr
+after/ftplugin/
+  helm.lua               -- {{/* */}} comments for gc
 lsp/
   ameba-ls.lua           -- Crystal linter config
-  liger.lua              -- custom LSP config
+  clear-ls.lua           -- Crystal language server config
 ```
