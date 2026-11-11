@@ -56,6 +56,9 @@ require("blink.cmp").setup({
     keymap = {
         preset = "super-tab",
     },
+    completion = {
+        accept = { auto_brackets = { blocked_filetypes = { "crystal" } } },
+    },
     signature = {
         enabled = true,
         window = {
@@ -69,7 +72,7 @@ vim.api.nvim_create_autocmd("User", {
     callback = function()
         require("nvim-treesitter.parsers").crystal = {
             install_info = {
-                url = "https://github.com/crystal-lang-tools/tree-sitter-crystal",
+                url = "https://github.com/TunkShif/tree-sitter-crystal",
                 generate = false,
                 generate_from_json = false,
                 queries = "queries/nvim",
